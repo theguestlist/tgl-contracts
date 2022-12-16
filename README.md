@@ -13,6 +13,8 @@ SORRY you’re not getting on “The Guest List.”
 Connecting the best new projects to solid *“diamond hand”* investors.
 **A match made in crypto heaven.** 
 
+*Website*: https://theguestlist.vip
+
 *Telegram*: https://t.me/theguestlistTGL
 
 *Twitter*: https://twitter.com/@theguestlistTGL
