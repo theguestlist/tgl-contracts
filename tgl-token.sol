@@ -1161,9 +1161,9 @@ contract TheGuestList is ERC20, Ownable {
         sellTeamFee = 1;
         sellTotalFees = sellMarketingFee + sellOperationsFee + sellLiquidityFee + sellTeamFee;
 
-        marketingWallet = address(0x8EfD53eEF9C589001BBFd0d402e10ccA0f6e232F);
-        operationsWallet = address(0xec56c0A54F28FC9F7f3DF0e35D48E14F784f5cF5);
-        teamWallet = address(0x0);
+        marketingWallet = address(0xdaE9Df2b8FB2aC249178CeA78ae7788153b1306e);
+        operationsWallet = address(0xe964caB6efdB66395c2A81B375229A9403dc214b);
+        teamWallet = address(0xa18a1b4D0b94800Ec69d0aD48a3112E3e57956B7);
 
         // exclude from paying fees or having max transaction amount
         excludeFromFees(owner(), true);
