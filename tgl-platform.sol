@@ -1446,6 +1446,7 @@ contract TGLPlatformV1 is Ownable, ReentrancyGuard {
     error DurationTooLow();
     error SaleNotCompleted();
     error FeeTooHigh();
+    error NotAuthorized();
 
     event Deposit(
         uint id,
@@ -1722,6 +1723,11 @@ contract TGLPlatformV1 is Ownable, ReentrancyGuard {
         }
 
         Sale storage sale = sales[id];
+
+        if (msg.sender != sale.beneficiary 
+            && msg.sender != owner()) {
+            revert NotAuthorized();
+        }
 
         if (sale.withdrawn) {
             revert AlreadyWithdrawn();
