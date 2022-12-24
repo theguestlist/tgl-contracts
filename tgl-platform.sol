@@ -1823,6 +1823,15 @@ contract TGLPlatformV1 is Ownable, ReentrancyGuard {
         }
 
         Sale storage sale = sales[id];
+
+        if (sale.completed) {
+            revert SaleCompleted();
+        }
+
+        if (sale.cancelled) {
+            revert SaleCancelled();
+        }
+
         uint saleEnd = sale.saleStart + sale.saleDuration; 
 
         if (block.timestamp > saleEnd) {
