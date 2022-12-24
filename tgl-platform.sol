@@ -1812,7 +1812,36 @@ contract TGLPlatformV1 is Ownable, ReentrancyGuard {
         sale.beneficiary = beneficiary;
     }
 
-    function closeSale(
+    function completeSale(
+        uint id
+    )
+    external
+    onlyOwner
+    {
+        if (!_saleExists(id)) {
+            revert SaleDoesntExist();
+        }
+
+        Sale storage sale = sales[id];
+
+        if (sale.cancelled) {
+            revert SaleCancelled();
+        }
+
+        if (sale.completed) {
+            revert SaleCompleted();
+        }
+
+        uint saleEnd = sale.saleStart + sale.saleDuration; 
+
+        if (block.timestamp < saleEnd) {
+            revert TooEarly();
+        }
+
+        sale.completed = true;
+    }
+
+    function cancelSale(
         uint id
     )
     external
@@ -1835,10 +1864,10 @@ contract TGLPlatformV1 is Ownable, ReentrancyGuard {
         uint saleEnd = sale.saleStart + sale.saleDuration; 
 
         if (block.timestamp > saleEnd) {
-            sale.completed = true;
-        } else {
-            sale.cancelled = true;
+            revert TooLate();
         }
+
+        sale.cancelled = true;
     }
 
     function prolongueSale(
